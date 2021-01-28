@@ -4,13 +4,13 @@
   width: calc(100% - 30px);
   overflow: hidden;
   margin-right: 15px;
-  margin-left: 15px;
 }
+
 
 .modal-dialog{
     background-color: transparent;
-    margin-left: 100px;
-    margin-top: 100px;
+    margin-top: 200px !important;
+    position: static;
 }
 
 .modal-content{
@@ -19,8 +19,8 @@
 }
 .modal-header{
     background-color: transparent !important;
-    color: white;
-    font-weight: 1500;
+    color: white !important;
+    font-weight: 2500;
 }
 
 .modal-backdrop {
@@ -31,10 +31,6 @@
     background-color: #003868;
     color: white;
     height: auto;
-}
-.close {
-    color: #fff; 
-    opacity: 1;
 }
 </style>
 <head>
@@ -47,6 +43,7 @@
 <html>
     <body>
         <div id="aerialSphereMap"></div>
+        <img style="top:663px; right:0px; position:absolute; z-index:9" src="Come_Fly_With_Us.png" alt="Come Fly with Us"></img>
         <!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
@@ -68,10 +65,9 @@
 </html>
 
 <script>
-    let tableData;
-    // document.getElementById("popup").style.visibility = "hidden";
+//     let tableData;
 // $.get(
-// 		"https://docs.google.com/spreadsheets/d/1B_rrkK-HsJjwdJ4G4kXQFexfu7sCB_ZjnkeowQeQ0ck", 
+// 		"https://docs.google.com/spreadsheets/d/1B_rrkK-HsJjwdJ4G4kXQFexfu7sCB_ZjnkeowQeQ0ck/gviz/tq?tqx=out:html&tq&gid=0", 
 // 		function(data, status) {
 // 			feedbackSpan.innerHTML = "Processing data...";
 // 			// Handle back data load
@@ -95,7 +91,9 @@
 // 			data = processData(data, displayMethod);
 // 			feedbackSpan.innerHTML = data;
 // 		}
-// 	);
+//     );
+    
+//     console.log(tableData)
 
 
 
@@ -183,7 +181,7 @@ let markers = [
 	},
 	{
         "name": "Berkeley",
-        "description": "",
+        "description": "Berkeley is a city on the eastern shore of San Francisco Bay in northern Alameda County, California. It is named after the 18th-century Irish bishop and philosopher George Berkeley. It borders the cities of Oakland and Emeryville to the south and the city of Albany and the unincorporated community of Kensington to the north.",
 		"lat": 37.87116349999999,
         "lng": -122.3014377,
         "icon": "whats_here",
@@ -191,7 +189,7 @@ let markers = [
 	},
 	{
         "name": 'Oakland',
-        "description": "",
+        "description": "Oakland is the largest city and the county seat of Alameda County, California , USA. Oakland is the largest port city in the East Bay region of the San Francisco Bay Area, the third largest city in the San Francisco Bay Area, the eighth most populous city in California, and the 45th most populous city in the United States. ",
 		"lat": 37.75871754999999,
         "lng": -122.2353079,
         "icon": "whats_here",
@@ -217,6 +215,14 @@ const aerialSphere = new AerialSphere(
     sphereData, 
 );
 
+// aerialSphere.sendData({autoRotate: {
+//     on: true,
+//     speed: 30,
+//     right: true,
+//     tilt: 115,
+//     fov: 55,
+// }});
+
 function makePopUpVisible(id) {
     
     aerialSphere.getMarker(id.id, function(marker){
@@ -228,13 +234,6 @@ function makePopUpVisible(id) {
 
 aerialSphere.onMarkerClick(makePopUpVisible);
 
-// aerialSphere.sendData({autoRotate: {
-//     on: true,
-//     speed: 30,
-//     right: true,
-//     tilt: 115,
-//     fov: 55,
-// }});
 
 
 </script>
