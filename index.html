@@ -32,10 +32,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 id="modal-title" class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+          <p id="modal-description">Some text in the modal.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -175,12 +175,12 @@ const aerialSphere = new AerialSphere(
 );
 
 function makePopUpVisible(id) {
-    $('#myModal').modal("show");
-    // document.getElementById('popup').style.visibility = 'visible';
-    aerialSphere.getMarker(id.id, function(marker){
-        document.getElementById('myModal').innerHTML = marker.description;
-    });
     
+    aerialSphere.getMarker(id.id, function(marker){
+        $('#modal-title').text(marker.name);
+        $('#modal-description').text(marker.description);
+    });
+    $('#myModal').modal("show");
 }
 
 aerialSphere.onMarkerClick(makePopUpVisible);
