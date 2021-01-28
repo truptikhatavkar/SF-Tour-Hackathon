@@ -1,0 +1,197 @@
+<style>
+    .aerialSphereMapClass {
+  height: calc(100vh - 220px);
+  width: calc(100% - 30px);
+  overflow: hidden;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+/* #popup{
+    background-color: #003868;
+    opacity: 60%;
+    height: 10%;
+    width: 10%;
+} */
+</style>
+<head>
+    <script src="https://app.aerialsphere.com/api/map/js?key=35cb8917-27d0-4dfa-b0a4-e70a5f93b9a5"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<html>
+    <body>
+        <div id="aerialSphereMap"></div>
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    </body>
+</html>
+
+<script>
+    let tableData;
+    // document.getElementById("popup").style.visibility = "hidden";
+// $.get(
+// 		"https://docs.google.com/spreadsheets/d/1B_rrkK-HsJjwdJ4G4kXQFexfu7sCB_ZjnkeowQeQ0ck", 
+// 		function(data, status) {
+// 			feedbackSpan.innerHTML = "Processing data...";
+// 			// Handle back data load
+// 			if (!status=="success") {
+// 				var errorMsg = "Error loading data: " + status;
+// 				feedbackSpan.innerHTML = errorMsg;
+// 				return;
+// 			}
+			
+// 			// Slice off "google.visualization.Query.setResponse(" from front and ");" from end
+// 			data = data.slice(47, -2);
+// 			// Convert data from a string to a JavaScript object
+// 			data = JSON.parse(data);
+// 			// Ignore metadata and column definitions
+// 			data = data.table.rows;
+// 			// Remove redundant entries
+// 			var middleRow = (data.length - 41) / 2 + 41;
+// 			data = data.slice(0, middleRow);
+// 			// Save data for later
+// 			tableData = data;
+// 			data = processData(data, displayMethod);
+// 			feedbackSpan.innerHTML = data;
+// 		}
+// 	);
+
+
+
+let markers = [
+	// {
+	// 	"name": "<span alt='The bridge is one of the most internationally recognized symbols of San Francisco and California. It was initially designed by engineer Joseph Strauss in 1917. It has been declared one of the Wonders of the Modern World by the American Society of Civil Engineers.'>Golden Gate Bridge</span>",
+	// 	"lat": 37.8199286,
+	// 	"lng": -122.4782551,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='Angel Island is the second largest island in area of the San Francisco Bay (Alameda is the largest). On a clear day, Sonoma and Napa can be seen from the north side of the island; San Jose can be seen from the south side of the island.'>Angel Island</span>",
+	// 	"lat": 37.8623333,
+	// 	"lng": -122.43237645,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='Alcatraz Island is home to the abandoned prison and is the site of the oldest operating lighthouse on the West Coast. Today, the island’s facilities are managed by the National Park Service as part of Golden Gate National Recreation Area and is regularly open for tours.'>Alcatraz Island</span>",
+	// 	"lat": 37.8269775,
+	// 	"lng": -122.4229555,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='This artificial island in the San Francisco Bay was built in 1936–37 for the 1939 Golden Gate International Exposition. After the World’s Fair it was used as a Naval Station and Auxiliary Air Facility for airships, blimps, and seaplanes.'>Treasure Island</span>",
+	// 	"lat": 37.82014874999999,
+	// 	"lng": -122.3689871,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='Opened in 1936, the San Francisco-Oakland Bay bridge has two sections of roughly equal length; the older western section, officially known as the Willie L. Brown Jr. Bridge, connects downtown San Francisco to Yerba Buena Island, and the newer unnamed eastern section connects the island to Oakland.'>Bay Bridge</span>",
+	// 	"lat": 37.7893726,
+	// 	"lng": -122.3873613,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='The neighborhood sits on the site of the 1915 Panama–Pacific International Exposition, staged after the 1906 San Francisco earthquake to celebrate the reemergence of the city. Much of the marina is built from landfill that came from dredging mud and sand from the bottom of the Bay.'>Marina District</span>",
+	// 	"lat": 37.80383495,
+	// 	"lng": -122.43747445,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='This monumental structure originally constructed for the 1915 Panama-Pacific Exposition in order to exhibit works of art. Completely rebuilt from 1964 to 1974, it is one of only a few surviving structures from the Exposition.'>The Palace of Fine Arts</span>",
+	// 	"lat": 37.80200679999999,
+	// 	"lng": -122.4486055,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='The Presidio of San Francisco is a park and former U.S. Army military fort on the northern tip of the San Francisco Peninsula. The park is characterized by many wooded areas, hills, and scenic vistas overlooking the Golden Gate Bridge.'>Presidio of San Francisco</span>",
+	// 	"lat": 37.79898590000001,
+	// 	"lng": -122.46618675,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='The Legion of Honor is a part of the Fine Arts Museums of San Francisco. The museum building occupies an elevated site in Lincoln Park in the northwest of the city, with views over the nearby Golden Gate Bridge and the distant downtown skyline.'>Legion of Honor</span>",
+	// 	"lat": 37.7844661,
+	// 	"lng": -122.5008419,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt='Fort Point is a masonry seacoast fortification located on the southern side of the Golden Gate at the entrance to San Francisco Bay. It is also the geographic name of the promontory upon which the fort and the southern approach of the Golden Gate Bridge were constructed.'>Fort Point</span>",
+	// 	"lat": 37.8106185,
+	// 	"lng": -122.4770527,
+	// 	"icon": "poi"
+	// },
+	// {
+	// 	"name": "<span alt=''>Berkeley</span>",
+	// 	"lat": 37.87116349999999,
+    //     "lng": -122.3014377,
+	// 	"icon": "whats_here"
+	// },
+	{
+        "name": 'Oakland',
+        "description": "works?",
+        "id": 1,
+		"lat": 37.75871754999999,
+        "lng": -122.2353079,
+		"icon": "whats_here"
+	}
+];
+
+  const sphereData = {
+  sphereLat: 37.8199286,
+  sphereLng: -122.4782551,
+  title: 'Example',
+  lookAtLat: 37.8199286,
+  lookAtLng: -122.4782551,
+  cameraFov: 50,
+  cameraFovMin: 10,
+  cameraFovMax: 145,
+  layers: [{name:'marker_layer', visible: true, markers: markers}]
+};
+
+const aerialSphere = new AerialSphere(
+    'aerialSphereMap',
+    'aerialSphereMapClass',
+    sphereData, 
+);
+
+function makePopUpVisible(id) {
+    $('#myModal').modal("show");
+    // document.getElementById('popup').style.visibility = 'visible';
+    aerialSphere.getMarker(id.id, function(marker){
+        document.getElementById('myModal').innerHTML = marker.description;
+    });
+    
+}
+
+aerialSphere.onMarkerClick(makePopUpVisible);
+
+// aerialSphere.sendData({autoRotate: {
+//     on: true,
+//     speed: 30,
+//     right: true,
+//     tilt: 115,
+//     fov: 55,
+// }});
+
+
+</script>
