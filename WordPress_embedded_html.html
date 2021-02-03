@@ -1,47 +1,62 @@
-<style>
-    .aerialSphereMapClass {
-  height: calc(100vh - 220px);
-  width: calc(100% - 30px);
-  overflow: hidden;
-  margin-right: 15px;
-}
-
-</style>
 <html>
-    <body>
-        <div id="aerialSphereMap"></div>
-        <img src="images/Come_Fly_With_Us.png" alt="Come Fly with Us"></img>
-    </body>
+<head>
+	<style>
+	.aerialSphereMapClass {
+	  height: calc(100vh - 220px);
+	  width: calc(100% - 30px);
+	  overflow: hidden;
+	  margin-right: 15px;
+	}
+
+	h2.popup-header {
+		background-color: green !important;
+		color: white !important;
+		font-weight: 2500 !important;
+	}
+
+	</style>
+
+	<script src="https://app.aerialsphere.com/api/map/js?key=35cb8917-27d0-4dfa-b0a4-e70a5f93b9a5"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+</head>
+
+<body>
+	<div id="aerialSphereMap"></div>
+</body>
 </html>
 
 <script>
 
 let markers = [
 	{
-        "name": '<h2>Golden Gate Bridge</h2><p>The bridge is one of the most internationally recognized symbols of San Francisco and California. It was initially designed by engineer Joseph Strauss in 1917. It has been declared one of the Wonders of the Modern World by the American Society of Civil Engineers.</p>',
+        "name": "<h2 style='color: white !important; font-weight: 2500 !important;'>Golden Gate Bridge</h2><p style='background-color:#003868'>The bridge is one of the most internationally recognized symbols of San Francisco and California. It was initially designed by engineer Joseph Strauss in 1917. It has been declared one of the Wonders of the Modern World by the American Society of Civil Engineers.</p>",
 		"lat": 37.8199286,
 		"lng": -122.4782551,
         "icon": "poi",
         "style":{
-            backgroundColor: 'rgba(0, 56, 104, 0.6)',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
             height: 'auto',
             width: '400px',
-            fontSize: '15px',
+            fontSize: '14px',
             color: '#FFFFFF',
             borderRadius: '12px',
             borderColor: '#FFFFFF'
         }
 	},
 	{
-        "name": '<h2>Angel Island</h2><p>Angel Island is the second largest island in area of the San Francisco Bay (Alameda is the largest). On a clear day, Sonoma and Napa can be seen from the north side of the island; San Jose can be seen from the south side of the island.</p>',
+        "name": "<h2 style='color: white !important; font-weight: 2500 !important;'>Angel Island</h2><p style='background-color:#003868'>Angel Island is the second largest island in area of the San Francisco Bay (Alameda is the largest). On a clear day, Sonoma and Napa can be seen from the north side of the island; San Jose can be seen from the south side of the island.</p>",
 		"lat": 37.8623333,
 		"lng": -122.43237645,
         "icon": "poi",
         "style":{
-            backgroundColor: 'rgba(0, 56, 104, 0.6)',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
             height: 'auto',
             width: '400px',
-            fontSize: '15px',
+            fontSize: '14px',
             color: '#FFFFFF',
             borderRadius: '12px',
             borderColor: '#FFFFFF'
