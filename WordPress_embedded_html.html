@@ -26,11 +26,15 @@
 <script>
 
 $(document).ready(function(){
-  $(".as-logo").parent().parent().parent().parent().css({
-    "top": "-250px",
-	"position": "relative",
-	"z-index": "500"
-  });
+	let mapWidth = $(".row-bg-wrap").width();
+	$(".as-logo").parent().parent().parent().parent().css({
+		"top": "-115px",
+		"left": (mapWidth - 275) + "px",
+		"position": "relative",
+		"z-index": "500",
+		"height": "100px",
+		"width": "200px"
+	});
 });
 
 let markers = [
