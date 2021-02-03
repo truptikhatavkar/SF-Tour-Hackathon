@@ -1,11 +1,10 @@
 <style>
-    .aerialSphereMapClass {
+ .aerialSphereMapClass {
   height: calc(100vh - 220px);
   width: calc(100% - 30px);
   overflow: hidden;
   margin-right: 15px;
 }
-
 
 .modal-dialog{
     background-color: transparent !important;
@@ -27,15 +26,18 @@
      background-color: rgba(0,0,0,.0001) !important;
 }
 
-.modal-body{
+.modal-body {
     background-color: #003868 !important;
     color: white !important;
     height: auto !important;
 }
+
 </style>
+
 <head>
     <script src="https://app.aerialsphere.com/api/map/js?key=35cb8917-27d0-4dfa-b0a4-e70a5f93b9a5"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
@@ -51,7 +53,7 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal">&times;</button>
+				<button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal" data-toggle="modal">&times;</button>
 				<h4 id="modal-title" class="modal-title">Modal Header</h4>
 				</div>
 				<div class="modal-body">
@@ -65,37 +67,6 @@
 </html>
 
 <script>
-//     let tableData;
-// $.get(
-// 		"https://docs.google.com/spreadsheets/d/1B_rrkK-HsJjwdJ4G4kXQFexfu7sCB_ZjnkeowQeQ0ck/gviz/tq?tqx=out:html&tq&gid=0", 
-// 		function(data, status) {
-// 			feedbackSpan.innerHTML = "Processing data...";
-// 			// Handle back data load
-// 			if (!status=="success") {
-// 				var errorMsg = "Error loading data: " + status;
-// 				feedbackSpan.innerHTML = errorMsg;
-// 				return;
-// 			}
-			
-// 			// Slice off "google.visualization.Query.setResponse(" from front and ");" from end
-// 			data = data.slice(47, -2);
-// 			// Convert data from a string to a JavaScript object
-// 			data = JSON.parse(data);
-// 			// Ignore metadata and column definitions
-// 			data = data.table.rows;
-// 			// Remove redundant entries
-// 			var middleRow = (data.length - 41) / 2 + 41;
-// 			data = data.slice(0, middleRow);
-// 			// Save data for later
-// 			tableData = data;
-// 			data = processData(data, displayMethod);
-// 			feedbackSpan.innerHTML = data;
-// 		}
-//     );
-    
-//     console.log(tableData)
-
-
 
 let markers = [
 	{
@@ -229,11 +200,9 @@ function makePopUpVisible(id) {
         $('#modal-title').text(marker.name);
         $('#modal-description').text(marker.description);
     });
-    $('#myModal').modal("show");
+     $('#myModal').modal("show");
 }
 
 aerialSphere.onMarkerClick(makePopUpVisible);
-
-
 
 </script>
