@@ -8,12 +8,6 @@
 	  margin-right: 15px;
 	}
 
-	h2.popup-header {
-		background-color: green !important;
-		color: white !important;
-		font-weight: 2500 !important;
-	}
-
 	</style>
 
 	<script src="https://app.aerialsphere.com/api/map/js?key=35cb8917-27d0-4dfa-b0a4-e70a5f93b9a5"></script>
@@ -30,6 +24,14 @@
 </html>
 
 <script>
+
+$(document).ready(function(){
+  $(".as-logo").parent().parent().parent().parent().css({
+    "top": "-250px",
+	"position": "relative",
+	"z-index": "500"
+  });
+});
 
 let markers = [
 	{
@@ -212,10 +214,10 @@ let markers = [
             borderRadius: '12px',
             borderColor: '#FFFFFF'
         }
-	}
+    }
 ];
 
-  const sphereData = {
+const sphereData = {
   sphereLat: 37.8199286,
   sphereLng: -122.4782551,
   title: 'Example',
